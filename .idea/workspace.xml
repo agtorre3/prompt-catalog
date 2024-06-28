@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="00b7ce3b-93b7-453d-a52e-e0d5be0dadd3" name="Changes" comment="() SKNK-&#10;&#10;&#10;Co-authored-by: Paul Shippy &lt;paul.shippy@strongmind.com&gt;">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +295,7 @@
       <option name="presentableId" value="Default" />
       <updated>1719537373811</updated>
       <workItem from="1719537374872" duration="1892000" />
-      <workItem from="1719539868315" duration="822000" />
+      <workItem from="1719539868315" duration="1083000" />
     </task>
     <servers />
   </component>
