@@ -1,14 +1,14 @@
 <%= link_to prompt_path(prompt) do %>
-<div id="<%= dom_id prompt %>" class="flex flex-col flex-1 font-mono w-[450px] shadow hover:shadow-lg">
-    <div class="flex flex-wrap items-baseline bg-black p-3">
-      <h1 class="w-full flex-none text-2xl font-semibold text-white">
-        <%= prompt.title %>
-      </h1>
-    </div>
-    <div class="flex items-baseline p-4">
-      <p class="line-clamp-5 hover:line-clamp-none">
-        <%= prompt.description %>
-      </p>
-    </div>
-</div>
+  <div id="<%= dom_id prompt %>" class="flex flex-col flex-1 font-mono w-[450px] shadow hover:shadow-lg">
+      <div class="flex flex-wrap items-baseline bg-black p-3">
+        <h1 class="w-full flex-none text-2xl font-semibold text-white">
+          <%= prompt.title %>
+        </h1>
+      </div>
+      <div class="flex items-baseline p-4">
+        <p class="line-clamp-5 hover:line-clamp-none">
+          <%= prompt.description %>
+        </p>
+      </div>
+  </div>
 <% end %>
