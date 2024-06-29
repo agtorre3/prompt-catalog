@@ -1,4 +1,5 @@
-<div id="<%= dom_id prompt %>" class="flex flex-col flex-1 font-mono max-w-[450px] shadow overflow-hidden">
+<%= link_to prompt_path(prompt) do %>
+<div id="<%= dom_id prompt %>" class="flex flex-col flex-1 font-mono w-[450px] shadow hover:shadow-lg">
     <div class="flex flex-wrap items-baseline bg-black p-3">
       <h1 class="w-full flex-none text-2xl font-semibold text-white">
         <%= prompt.title %>
@@ -10,3 +11,4 @@
       </p>
     </div>
 </div>
+<% end %>
