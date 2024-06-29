@@ -1,12 +1,12 @@
-<div id="<%= dom_id prompt %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= prompt.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= prompt.description %>
-  </p>
-
+<div id="<%= dom_id prompt %>" class="flex flex-col flex-1 font-mono max-w-[450px] shadow overflow-hidden">
+    <div class="flex flex-wrap items-baseline bg-black p-3">
+      <h1 class="w-full flex-none text-2xl font-semibold text-white">
+        <%= prompt.title %>
+      </h1>
+    </div>
+    <div class="flex items-baseline my-6">
+      <div class="flex text-sm font-medium p-3">
+        <h2><%= prompt.description %></h2>
+      </div>
+    </div>
 </div>
