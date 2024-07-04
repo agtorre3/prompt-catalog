@@ -7,9 +7,8 @@ module Services
         'https://api.potterdb.com/v1'
       end
 
-      def characters
-        url = "#{base_url}/characters"
-        response = Faraday.get(url)
+      def characters(link = "#{base_url}/characters")
+        response = Faraday.get(link)
 
         if response.success?
           JSON.parse(response.body)
