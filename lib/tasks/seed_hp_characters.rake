@@ -26,3 +26,17 @@ def add_characters(response)
     puts character['attributes']['name']
   end
 end
+
+def do_not_save?(character)
+  character['attributes']['name'].include?(strings_to_exclude)
+end
+
+def strings_to_exclude
+  %w[woman man 's s' Unidentified unidentified "at the" "in the" "in a" "of the" father mother broomsticks Broomsticks Third Professor professor Inquisitorial haired Haired muggle Muggle young]
+end
+
+# exclude - Quidditch? Player? Portrait? "of a"?
+
+# exclude words 'boy' 'girl', etc. but they need to be an exact word match
+
+# Notes: Edward Remus Lupin should be searchable by alias "Teddy Lupin"
