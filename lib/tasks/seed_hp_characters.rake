@@ -24,7 +24,7 @@ end
 def add_characters(response)
   data = response['data']
   data.each do |character|
-    puts character['attributes']['name'] unless do_not_save?(character)
+    Character.create(name: character['attributes']['name']) unless do_not_save?(character)
   end
 end
 
