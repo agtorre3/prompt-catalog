@@ -7,7 +7,18 @@
 
   <div class="flex justify-between items-center pb-6">
     <h1 class="font-bold text-4xl">Prompts</h1>
-    <%= link_to "New prompt", new_prompt_path, class: "rounded-lg py-3 px-5 bg-black text-white block font-medium" %>
+    <% if user_signed_in? %>
+      <%= link_to "New prompt", new_prompt_path, class: "rounded-lg py-3 px-5 bg-black text-white block font-medium" %>
+    <% else %>
+      <div class="relative group">
+        <button disabled class="rounded-lg py-3 px-5 bg-gray-400 text-white block font-medium cursor-not-allowed">
+          New prompt
+        </button>
+        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          Please sign in to create a prompt
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div id="courses" class="flex flex-col gap-5 pb-24">
