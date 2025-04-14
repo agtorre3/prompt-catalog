@@ -24,7 +24,9 @@ end
 def add_characters(response)
   data = response['data']
   data.each do |character|
-    Character.create(name: character['attributes']['name']) unless do_not_save?(character)
+    Character.find_or_create_by(external_id: character['id']) do |c|
+      c.name = character['attributes']['name']
+    end unless do_not_save?(character)
   end
 end
 
