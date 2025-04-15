@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_15_191455) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_15_192931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -37,6 +37,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_191455) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relationship_members", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "relationship_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_relationship_members_on_character_id"
+    t.index ["relationship_id", "character_id"], name: "index_relationship_members_on_relationship_id_and_character_id", unique: true
+    t.index ["relationship_id"], name: "index_relationship_members_on_relationship_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.string "relationship_type", null: false
     t.datetime "created_at", null: false
@@ -57,4 +67,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_191455) do
 
   add_foreign_key "prompt_characters", "characters"
   add_foreign_key "prompt_characters", "prompts"
+  add_foreign_key "relationship_members", "characters"
+  add_foreign_key "relationship_members", "relationships"
 end
