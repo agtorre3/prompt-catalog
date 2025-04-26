@@ -3,7 +3,17 @@ class CharactersController < ApplicationController
 
   # GET /characters or /characters.json
   def index
-    @characters = Character.all
+    if params[:query].present?
+      @characters = Character.where("name ILIKE ?", "%#{params[:query]}%")
+                            .limit(15)
+    else
+      @characters = Character.all
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @characters }
+    end
   end
 
   # GET /characters/1 or /characters/1.json
@@ -65,6 +75,6 @@ class CharactersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def character_params
-      params.require(:character).permit(:name)
+      params.require(:character).permit(:name, :character_ids)
     end
 end

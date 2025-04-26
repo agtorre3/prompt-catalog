@@ -12,7 +12,7 @@
 puts "Loading seeds for #{Rails.env} environment..."
 load(Rails.root.join("db", "seeds", "#{Rails.env}.rb"))
 
-# Common seed data that should exist in all environments
+# Common seed data that should exist in all environmentss
 puts "Loading common seed data..."
 
 # Seed Harry Potter characters
