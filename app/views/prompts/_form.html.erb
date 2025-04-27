@@ -16,13 +16,13 @@
     <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5" data-controller="multi-select-tokenizer" data-multi-select-tokenizer-path-value="<%= characters_url %>">
+  <div class="my-5 relative" data-controller="multi-select-tokenizer" data-multi-select-tokenizer-path-value="<%= characters_url %>">
     <%= form.label :character_ids, "Characters" %>
-    <label>
-      <input type="text" name="character_ids"
-             data-action="change->multi-select-tokenizer#search"
-        />
-    </label>
+    <input type="text"
+           class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+           placeholder="Search for characters..."
+           data-action="input->multi-select-tokenizer#search"/>
+    <input type="hidden" name="character_ids"/>
   </div>
 
   <div class="my-5">
