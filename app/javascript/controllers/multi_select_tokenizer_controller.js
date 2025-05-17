@@ -8,6 +8,12 @@ export default class extends Controller {
         this.resultsContainer = document.createElement('div')
         this.resultsContainer.className = 'absolute mt-1 bg-gray-100 w-full rounded-md shadow-lg'
         this.element.appendChild(this.resultsContainer)
+
+        // Create hidden input for character IDs
+        this.hiddenInput = document.createElement('input')
+        this.hiddenInput.type = 'hidden'
+        this.hiddenInput.name = 'prompt[character_ids][]'
+        this.element.appendChild(this.hiddenInput)
     }
 
     search(event) {
@@ -107,7 +113,8 @@ export default class extends Controller {
     }
 
     updateHiddenInput() {
-        const input = this.element.querySelector('input[name="character_ids"]')
-        input.value = Array.from(this.selectedCharacters).join(',')
+        if (this.hiddenInput) {
+            this.hiddenInput.value = Array.from(this.selectedCharacters).join(',')
+        }
     }
 }
