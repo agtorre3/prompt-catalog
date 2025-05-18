@@ -4,15 +4,11 @@ class CharactersController < ApplicationController
   # GET /characters or /characters.json
   def index
     if params[:query].present?
-      @characters = Character.where("name ILIKE ?", "%#{params[:query]}%")
-                            .limit(15)
+      search_terms = params[:query].split.map { |term| "%#{term}%" }.join
+      @characters = Character.where("name ILIKE ?", search_terms)
+                             .limit(15)
     else
       @characters = Character.all
-    end
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @characters }
     end
   end
 
@@ -33,48 +29,40 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
 
-    respond_to do |format|
-      if @character.save
-        format.html { redirect_to character_url(@character), notice: "Character was successfully created." }
-        format.json { render :show, status: :created, location: @character }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
-      end
+    if @character.save
+      redirect_to character_url(@character), notice: "Character was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /characters/1 or /characters/1.json
   def update
-    respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to character_url(@character), notice: "Character was successfully updated." }
-        format.json { render :show, status: :ok, location: @character }
+        redirect_to character_url(@character), notice: "Character was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @character.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
-    end
   end
 
   # DELETE /characters/1 or /characters/1.json
   def destroy
-    @character.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to characters_url, notice: "Character was successfully destroyed." }
-      format.json { head :no_content }
+    if @character.destroy!
+      redirect_to characters_url, notice: "Character was successfully destroyed."
+    else
+      flash[:alert] = "Character could not be destroyed."
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_character
-      @character = Character.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def character_params
-      params.require(:character).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_character
+    @character = Character.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def character_params
+    params.require(:character).permit(:name)
+  end
 end
