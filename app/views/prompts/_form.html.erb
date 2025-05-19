@@ -25,6 +25,7 @@
              placeholder="Search for characters..."
              data-action="input->multi-select-tokenizer#search"/>
     </div>
+    <%= form.hidden_field :character_ids, name: "prompt[character_ids][]", data: { multi_select_tokenizer_target: 'selectedTokens' } %>
   </div>
 
   <div class="my-5">

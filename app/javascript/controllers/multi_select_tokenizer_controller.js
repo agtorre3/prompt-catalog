@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+    static targets = ["selectedTokens"]
     static values = { path: String }
     
     connect() {
@@ -8,12 +9,6 @@ export default class extends Controller {
         this.resultsContainer = document.createElement('div')
         this.resultsContainer.className = 'absolute mt-1 bg-gray-100 w-full rounded-md shadow-lg'
         this.element.appendChild(this.resultsContainer)
-
-        // Create hidden input for character IDs
-        this.hiddenInput = document.createElement('input')
-        this.hiddenInput.type = 'hidden'
-        this.hiddenInput.name = 'prompt[character_ids][]'
-        this.element.appendChild(this.hiddenInput)
     }
 
     search(event) {
@@ -103,6 +98,11 @@ export default class extends Controller {
         tokensContainer.appendChild(token)
         
         this.updateHiddenInput()
+        
+        const searchInput = this.element.querySelector('input[type="text"]')
+        if (searchInput) {
+            searchInput.value = ''
+        }
     }
 
     createTokensContainer() {
@@ -113,8 +113,7 @@ export default class extends Controller {
     }
 
     updateHiddenInput() {
-        if (this.hiddenInput) {
-            this.hiddenInput.value = Array.from(this.selectedCharacters).join(',')
-        }
+        if (this.selectedTokensTarget)
+            this.selectedTokensTarget.value = Array.from(this.selectedCharacters).join(',')
     }
 }
