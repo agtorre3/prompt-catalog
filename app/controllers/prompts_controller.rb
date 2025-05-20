@@ -51,7 +51,7 @@ class PromptsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_prompt
-    @prompt = Prompt.find(params[:id])
+    @prompt = Prompt.includes(:characters).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -22,5 +22,14 @@
         <%= @prompt.description %>
       </p>
     </div>
+
+    <div>
+      <h2>Characters</h2>
+      <% @prompt.characters.each do |character| %>
+        <div class="inline-flex items-center px-2 py-1 rounded-full bg-blue-100 text-blue-800 mr-2 mb-2">
+          <%= character.name %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
