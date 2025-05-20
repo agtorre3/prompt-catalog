@@ -24,23 +24,19 @@ class PromptsController < ApplicationController
   def create
     @prompt = Prompt.new(prompt_params)
 
-    respond_to do |format|
-      if @prompt.save
-        format.html { redirect_to prompt_url(@prompt), notice: "Prompt was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @prompt.save
+      redirect_to prompt_url(@prompt), notice: "Prompt was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /prompts/1 or /prompts/1.json
   def update
-    respond_to do |format|
-      if @prompt.update(prompt_params)
-        format.html { redirect_to prompt_url(@prompt), notice: "Prompt was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @prompt.update(prompt_params)
+      redirect_to prompt_url(@prompt), notice: "Prompt was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,19 +44,18 @@ class PromptsController < ApplicationController
   def destroy
     @prompt.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to prompts_url, notice: "Prompt was successfully destroyed." }
-    end
+    redirect_to prompts_url, notice: "Prompt was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_prompt
-      @prompt = Prompt.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def prompt_params
-      params.require(:prompt).permit(:title, :description, character_ids: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_prompt
+    @prompt = Prompt.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def prompt_params
+    params.require(:prompt).permit(:title, :description, character_ids: [])
+  end
 end
