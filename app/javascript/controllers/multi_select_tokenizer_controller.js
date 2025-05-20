@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["selectedTokens"]
     static values = { path: String }
     
     connect() {
@@ -113,7 +112,17 @@ export default class extends Controller {
     }
 
     updateHiddenInput() {
-        if (this.selectedTokensTarget)
-            this.selectedTokensTarget.value = Array.from(this.selectedCharacters).join(',')
+        // Remove any existing hidden inputs
+        const existingInputs = this.element.querySelectorAll('input[name="prompt[character_ids][]"]')
+        existingInputs.forEach(input => input.remove())
+        
+        // Create a new hidden input for each character ID
+        Array.from(this.selectedCharacters).forEach(characterId => {
+            const input = document.createElement('input')
+            input.type = 'hidden'
+            input.name = 'prompt[character_ids][]'
+            input.value = characterId
+            this.element.appendChild(input)
+        })
     }
 }
