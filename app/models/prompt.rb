@@ -4,4 +4,6 @@ class Prompt < ApplicationRecord
 
   has_many :prompt_relationships
   has_many :relationships, through: :prompt_relationships
+
+  belongs_to :user
 end
