@@ -22,7 +22,7 @@ class PromptsController < ApplicationController
 
   # POST /prompts or /prompts.json
   def create
-    @prompt = Prompt.new(prompt_params)
+    @prompt = current_user.prompts.build(prompt_params)
 
     if @prompt.save
       redirect_to prompt_url(@prompt), notice: "Prompt was successfully created."
@@ -51,7 +51,7 @@ class PromptsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_prompt
-    @prompt = Prompt.includes(:characters).find(params[:id])
+    @prompt = Prompt.includes(:characters, :user).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
