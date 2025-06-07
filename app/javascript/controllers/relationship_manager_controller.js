@@ -15,10 +15,10 @@ export default class extends Controller {
 
   addRelationship() {
     const type = this.typeRadioTargets.find(r => r.checked)?.value;
-    // Get selected character IDs from the tokenizer controller
     const tokenizerElement = this.characterTokenizerTarget;
     const tokenizerController = this.application.getControllerForElementAndIdentifier(tokenizerElement, "multi-select-tokenizer");
     const characterIds = tokenizerController ? Array.from(tokenizerController.selectedCharacters) : [];
+    
     if (!type) {
       alert("Please select a relationship type.");
       return;
@@ -27,23 +27,49 @@ export default class extends Controller {
       alert("Please select at least two characters.");
       return;
     }
-    // Prevent duplicate relationships (same type and same members)
-    if (this.relationships.some(r => r.type === type && this.arraysEqual(r.character_ids, characterIds))) {
-      alert("This relationship already exists.");
-      return;
-    }
-    this.relationships.push({ type, character_ids: characterIds });
-    this.renderRelationships();
-    this.updateInput();
-    // Optionally clear selection
-    this.typeRadioTargets.forEach(r => r.checked = false);
-    if (tokenizerController) {
-      tokenizerController.selectedCharacters.clear();
-      const tokensContainer = tokenizerElement.querySelector('.selected-tokens');
-      if (tokensContainer) tokensContainer.innerHTML = '';
-      const searchInput = tokenizerElement.querySelector('input[type="text"]');
-      if (searchInput) searchInput.value = '';
-    }
+
+    const data = {
+      relationship: {
+        relationship_type: type,
+        relationship_members_attributes: characterIds.map(id => ({ character_id: id }))
+      }
+    };
+
+    fetch('/relationships', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.errors) {
+        alert(Object.values(data.errors).flat().join(', '));
+        return;
+      }
+      this.relationships.push({
+        id: data.id,
+        type: data.relationship_type,
+        character_ids: data.characters.map(c => c.id)
+      });
+      this.renderRelationships();
+      this.updateInput();
+      // Clear selection
+      this.typeRadioTargets.forEach(r => r.checked = false);
+      if (tokenizerController) {
+        tokenizerController.selectedCharacters.clear();
+        const tokensContainer = tokenizerElement.querySelector('.selected-tokens');
+        if (tokensContainer) tokensContainer.innerHTML = '';
+        const searchInput = tokenizerElement.querySelector('input[type="text"]');
+        if (searchInput) searchInput.value = '';
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while creating the relationship.');
+    });
   }
 
   renderRelationships() {

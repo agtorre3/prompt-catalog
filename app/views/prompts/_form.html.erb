@@ -16,7 +16,9 @@
     <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5 relative" data-controller="multi-select-tokenizer" data-multi-select-tokenizer-path-value="<%= characters_url %>">
+  <div class="my-5 relative" data-controller="multi-select-tokenizer" 
+       data-multi-select-tokenizer-path-value="<%= characters_url %>"
+       data-multi-select-tokenizer-target-name-value="prompt[character_ids][]">
     <%= form.label :character_ids, "Characters" %>
     <div class="relative">
       <input type="text"
@@ -42,7 +44,10 @@
     </div>
     <div class="mb-2">
       <label class="block mb-1">Select Characters:</label>
-      <div class="relative" data-controller="multi-select-tokenizer" data-multi-select-tokenizer-path-value="<%= characters_url %>" data-relationship-manager-target="characterTokenizer">
+      <div class="relative" data-controller="multi-select-tokenizer" 
+           data-multi-select-tokenizer-path-value="<%= characters_url %>" 
+           data-relationship-manager-target="characterTokenizer"
+           data-multi-select-tokenizer-target-name-value="relationship[relationship_members_attributes][INDEX][character_id]">
         <input type="text"
                class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
                placeholder="Search for characters..."

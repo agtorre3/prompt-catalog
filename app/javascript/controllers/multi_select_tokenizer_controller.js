@@ -1,7 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static values = { path: String }
+    static values = { 
+        path: String,
+        targetName: { type: String, default: "character_ids[]" }
+    }
     
     connect() {
         this.selectedCharacters = new Set()
@@ -113,14 +116,19 @@ export default class extends Controller {
 
     updateHiddenInput() {
         // Remove any existing hidden inputs
-        const existingInputs = this.element.querySelectorAll('input[name="prompt[character_ids][]"]')
+        const baseName = this.targetNameValue.replace('[INDEX]', '[');
+        const existingInputs = this.element.querySelectorAll(`input[name^="${baseName}"][name$="character_id]"]`)
         existingInputs.forEach(input => input.remove())
         
         // Create a new hidden input for each character ID
-        Array.from(this.selectedCharacters).forEach(characterId => {
+        Array.from(this.selectedCharacters).forEach((characterId, index) => {
             const input = document.createElement('input')
             input.type = 'hidden'
-            input.name = 'prompt[character_ids][]'
+            // If the target name contains [INDEX], replace it with the index
+            // Otherwise, use the target name as is
+            input.name = this.targetNameValue.includes('[INDEX]') 
+                ? this.targetNameValue.replace('INDEX', index)
+                : this.targetNameValue
             input.value = characterId
             this.element.appendChild(input)
         })
