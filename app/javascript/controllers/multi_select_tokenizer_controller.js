@@ -115,22 +115,25 @@ export default class extends Controller {
     }
 
     updateHiddenInput() {
-        // Remove any existing hidden inputs
-        const baseName = this.targetNameValue.replace('[INDEX]', '[');
-        const existingInputs = this.element.querySelectorAll(`input[name^="${baseName}"][name$="character_id]"]`)
-        existingInputs.forEach(input => input.remove())
-        
-        // Create a new hidden input for each character ID
+        // Remove all hidden inputs created by this controller
+        // This will match all hidden inputs whose name starts with the base of targetNameValue (up to the first [ or end)
+        const baseName = this.targetNameValue.split('[')[0];
+        const allInputs = this.element.querySelectorAll('input[type="hidden"]');
+        allInputs.forEach(input => {
+            if (input.name.startsWith(baseName)) {
+                input.remove();
+            }
+        });
+
+        // Add one hidden input per selected character
         Array.from(this.selectedCharacters).forEach((characterId, index) => {
-            const input = document.createElement('input')
-            input.type = 'hidden'
-            // If the target name contains [INDEX], replace it with the index
-            // Otherwise, use the target name as is
-            input.name = this.targetNameValue.includes('[INDEX]') 
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = this.targetNameValue.includes('[INDEX]')
                 ? this.targetNameValue.replace('INDEX', index)
-                : this.targetNameValue
-            input.value = characterId
-            this.element.appendChild(input)
-        })
+                : this.targetNameValue;
+            input.value = characterId;
+            this.element.appendChild(input);
+        });
     }
 }

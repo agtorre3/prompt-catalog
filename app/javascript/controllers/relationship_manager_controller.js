@@ -92,7 +92,17 @@ export default class extends Controller {
   }
 
   updateInput() {
-    this.relationshipsInputTarget.value = JSON.stringify(this.relationships);
+    // Remove any existing relationship_id inputs
+    this.relationshipsInputTarget.innerHTML = '';
+
+    // Create a new hidden input for each relationship ID
+    this.relationships.forEach(rel => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'prompt[relationship_ids][]';
+      input.value = rel.id;
+      this.relationshipsInputTarget.appendChild(input);
+    });
   }
 
   characterName(id) {

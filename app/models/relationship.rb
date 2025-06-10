@@ -1,5 +1,5 @@
 class Relationship < ApplicationRecord
-    enum :relationship_type, %i[friendly romantic]
+    enum :relationship_type, { friendly: "friendly", romantic: "romantic" }
     
     has_many :relationship_members, dependent: :destroy
     has_many :characters, through: :relationship_members
