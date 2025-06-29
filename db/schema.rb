@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_29_032834) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_29_033245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -38,6 +38,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_29_032834) do
     t.index ["prompt_id", "relationship_id"], name: "index_prompt_relationships_on_prompt_id_and_relationship_id", unique: true
     t.index ["prompt_id"], name: "index_prompt_relationships_on_prompt_id"
     t.index ["relationship_id"], name: "index_prompt_relationships_on_relationship_id"
+  end
+
+  create_table "prompt_tags", force: :cascade do |t|
+    t.bigint "prompt_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prompt_id"], name: "index_prompt_tags_on_prompt_id"
+    t.index ["tag_id"], name: "index_prompt_tags_on_tag_id"
   end
 
   create_table "prompts", force: :cascade do |t|
@@ -95,6 +104,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_29_032834) do
   add_foreign_key "prompt_characters", "prompts"
   add_foreign_key "prompt_relationships", "prompts"
   add_foreign_key "prompt_relationships", "relationships"
+  add_foreign_key "prompt_tags", "prompts"
+  add_foreign_key "prompt_tags", "tags"
   add_foreign_key "prompts", "users"
   add_foreign_key "relationship_members", "characters"
   add_foreign_key "relationship_members", "relationships"
