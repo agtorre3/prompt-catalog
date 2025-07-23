@@ -3,7 +3,13 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.all
+    if params[:query].present?
+      search_terms = params[:query].split.map { |term| "%#{term}%" }.join
+      @tags = Tag.where("name ILIKE ?", search_terms)
+                             .limit(15)
+    else
+      @tags = Tag.all
+    end
   end
 
   # GET /tags/1 or /tags/1.json

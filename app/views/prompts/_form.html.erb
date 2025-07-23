@@ -30,6 +30,20 @@
     </div>
   </div>
 
+  <div class="my-5 relative" data-controller="multi-select-tokenizer" 
+       data-multi-select-tokenizer-path-value="<%= tags_url %>"
+       data-multi-select-tokenizer-target-name-value="prompt[tag_ids][]"
+       data-multi-select-tokenizer-initial-value='<%= prompt.tags.map { |t| { id: t.id, name: t.name } }.to_json %>'>
+    <%= form.label :tag_ids, "Tags" %>
+    <div class="relative">
+      <input type="text"
+             name=""
+             class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+             placeholder="Search for tags..."
+             data-action="input->multi-select-tokenizer#search"/>
+    </div>
+  </div>
+
   <div class="my-5">
     <%= form.label :description %>
     <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
