@@ -34,5 +34,24 @@
         </div>
       <% end %>
     </div>
+
+    <div class="mt-4">
+      <h2>Tags</h2>
+      <% @prompt.tags.each do |tag| %>
+        <div class="inline-flex items-center px-2 py-1 rounded-full bg-green-100 text-green-800 mr-2 mb-2">
+          <%= tag.name %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-4">
+      <h2>Relationships</h2>
+      <% @prompt.relationships.each do |relationship| %>
+        <div class="inline-flex items-center px-2 py-1 rounded-full bg-purple-100 text-purple-800 mr-2 mb-2">
+          <% separator = relationship.relationship_type == "romantic" ? " & " : " / " %>
+          <%= relationship.characters.map(&:name).join(separator) %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
