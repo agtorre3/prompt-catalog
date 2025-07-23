@@ -19,6 +19,11 @@ puts "Loading common seed data..."
 puts "Seeding Harry Potter characters..."
 Rake::Task['db:seed_hp_characters'].invoke
 
+# Seed tags
+puts "Seeding tags..."
+require_relative 'seeds/tags'
+
+
 # Example of common data that should exist in all environments
 # ["admin", "user", "guest"].each do |role_name|
 #   Role.find_or_create_by!(name: role_name)
