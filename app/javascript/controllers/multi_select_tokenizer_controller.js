@@ -3,7 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static values = { 
         path: String,
-        targetName: { type: String, default: "character_ids[]" }
+        targetName: { type: String, default: "character_ids[]" },
+        initial: Array // Add support for initial selected characters
     }
     
     connect() {
@@ -11,6 +12,13 @@ export default class extends Controller {
         this.resultsContainer = document.createElement('div')
         this.resultsContainer.className = 'absolute mt-1 bg-gray-100 w-full rounded-md shadow-lg'
         this.element.appendChild(this.resultsContainer)
+
+        // Render initial tokens if present
+        if (this.hasInitialValue && Array.isArray(this.initialValue)) {
+            this.initialValue.forEach(character => {
+                this.selectCharacter(character)
+            })
+        }
     }
 
     search(event) {

@@ -18,7 +18,8 @@
 
   <div class="my-5 relative" data-controller="multi-select-tokenizer" 
        data-multi-select-tokenizer-path-value="<%= characters_url %>"
-       data-multi-select-tokenizer-target-name-value="prompt[character_ids][]">
+       data-multi-select-tokenizer-target-name-value="prompt[character_ids][]"
+       data-multi-select-tokenizer-initial-value='<%= prompt.characters.map { |c| { id: c.id, name: c.name } }.to_json %>'>
     <%= form.label :character_ids, "Characters" %>
     <div class="relative">
       <input type="text"
