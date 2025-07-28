@@ -6,7 +6,10 @@ class TagsController < ApplicationController
     if params[:query].present?
       search_terms = params[:query].split.map { |term| "%#{term}%" }.join
       @tags = Tag.where("name ILIKE ?", search_terms)
-                             .limit(15)
+                  .where.not(tag_category_id: TagCategory.find_by(name: "NSFW").id)
+                  .where.not(tag_category_id: TagCategory.find_by(name: "Warnings").id)
+                  .where.not(tag_category_id: TagCategory.find_by(name: "Character").id)
+                  .limit(15)
     else
       @tags = Tag.all
     end
