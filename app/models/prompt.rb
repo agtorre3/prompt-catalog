@@ -8,5 +8,8 @@ class Prompt < ApplicationRecord
   has_many :prompt_tags, dependent: :destroy
   has_many :tags, through: :prompt_tags
 
+  has_many :prompt_character_traits, dependent: :destroy
+  has_many :character_traits, through: :prompt_character_traits
+
   belongs_to :user
 end

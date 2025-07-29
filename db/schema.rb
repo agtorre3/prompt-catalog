@@ -10,15 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_29_033245) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_29_015054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "character_traits", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "trait_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id", "trait_id"], name: "index_character_traits_on_character_id_and_trait_id", unique: true
+    t.index ["character_id"], name: "index_character_traits_on_character_id"
+    t.index ["trait_id"], name: "index_character_traits_on_trait_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "external_id"
+  end
+
+  create_table "prompt_character_traits", force: :cascade do |t|
+    t.bigint "prompt_id", null: false
+    t.bigint "character_trait_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_trait_id"], name: "index_prompt_character_traits_on_character_trait_id"
+    t.index ["prompt_id", "character_trait_id"], name: "idx_on_prompt_id_character_trait_id_91dc567766", unique: true
+    t.index ["prompt_id"], name: "index_prompt_character_traits_on_prompt_id"
   end
 
   create_table "prompt_characters", force: :cascade do |t|
@@ -88,6 +108,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_29_033245) do
     t.index ["tag_category_id"], name: "index_tags_on_tag_category_id"
   end
 
+  create_table "traits", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_traits_on_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -100,6 +127,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_29_033245) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "character_traits", "characters"
+  add_foreign_key "character_traits", "traits"
+  add_foreign_key "prompt_character_traits", "character_traits"
+  add_foreign_key "prompt_character_traits", "prompts"
   add_foreign_key "prompt_characters", "characters"
   add_foreign_key "prompt_characters", "prompts"
   add_foreign_key "prompt_relationships", "prompts"
