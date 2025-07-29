@@ -23,6 +23,9 @@ Rake::Task['db:seed_hp_characters'].invoke
 puts "Seeding tags..."
 require_relative 'seeds/tags'
 
+# Seed traits
+puts "Seeding traits..."
+require_relative 'seeds/traits'
 
 # Example of common data that should exist in all environments
 # ["admin", "user", "guest"].each do |role_name|

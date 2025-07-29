@@ -8,7 +8,7 @@ puts "Seeding tag categories..."
   "Canon Compliancy",
   "Warnings",
   "NSFW"
-].each { |name| TagCategory.create!(name: name) }
+].each { |name| TagCategory.find_or_create_by!(name: name) }
 
 puts "Seeding tags for general tropes..."
 # Seed tags for each category
@@ -71,23 +71,6 @@ puts "Seeding tags for fandom tropes..."
   Tag.find_or_create_by!(name: fandom_trope, tag_category: TagCategory.find_by(name: 'Fandom Tropes'))
 end
 
-puts "Seeding tags for characters..."
-[
-  "Slytherin",
-  "Hufflepuff",
-  "Ravenclaw",
-  "Gryffindor",
-  "Vampire",
-  "Werewolf",
-  "Veela",
-  "Zombie",
-  "Grey",
-  "Dark",
-  "Auror"
-].each do |character|
-  Tag.find_or_create_by!(name: character, tag_category: TagCategory.find_by(name: 'Character'))
-end
-
 puts "Seeding tags for genre/theme..."
 [
   "Fluff",
@@ -136,3 +119,5 @@ puts "Seeding tags for NSFW..."
 ].each do |nsfw|
   Tag.find_or_create_by!(name: nsfw, tag_category: TagCategory.find_by(name: 'NSFW'))
 end
+
+puts "Tags seeded successfully!"
