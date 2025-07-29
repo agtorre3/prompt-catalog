@@ -79,7 +79,8 @@
 
   <div class="my-5">
     <label class="block font-medium mb-2">Character Traits & Tropes</label>
-    <div data-controller="character-trait">
+    <div data-controller="character-trait"
+         data-character-trait-initial-traits-value='<%= prompt.character_traits.map { |ct| { id: ct.id, character_name: ct.character.name, trait_name: ct.trait.name } }.to_json %>'>
       <div class="flex items-center space-x-4 mb-2">
         <div class="flex-1">
           <label class="block text-sm font-medium mb-1">Character:</label>

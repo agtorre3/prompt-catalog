@@ -2,10 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["characterSelect", "traitSelect", "traitsList"]
+  static values = {
+    initialTraits: Array
+  }
 
   connect() {
     this.addCharacterTraitButton = document.getElementById("add-character-trait-btn")
     this.addCharacterTraitButton.addEventListener("click", this.createCharacterTrait.bind(this))
+    
+    // Initialize existing traits
+    if (this.hasInitialTraitsValue) {
+      this.initialTraitsValue.forEach(trait => {
+        this.addCharacterTraitToForm({
+          id: trait.id,
+          character_name: trait.character_name,
+          trait_name: trait.trait_name
+        })
+      })
+    }
   }
 
   async createCharacterTrait(event) {
