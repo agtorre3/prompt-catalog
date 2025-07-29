@@ -15,8 +15,7 @@ class CharacterTraitsController < ApplicationController
             success: true,
             character_trait: {
               id: @character_trait.id,
-              character_name: @character.name,
-              trait_name: @trait.name
+              name: @character_trait.name
             }
           }
         else

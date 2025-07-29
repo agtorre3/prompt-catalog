@@ -15,8 +15,7 @@ export default class extends Controller {
       this.initialTraitsValue.forEach(trait => {
         this.addCharacterTraitToForm({
           id: trait.id,
-          character_name: trait.character_name,
-          trait_name: trait.trait_name
+          name: trait.name
         })
       })
     }
@@ -75,7 +74,7 @@ export default class extends Controller {
     traitElement.dataset.characterTraitId = characterTrait.id
     
     const traitText = document.createElement("span")
-    traitText.textContent = `${characterTrait.character_name}: ${characterTrait.trait_name}`
+    traitText.textContent = characterTrait.name
     
     const removeButton = document.createElement("button")
     removeButton.type = "button"
