@@ -77,6 +77,43 @@
     <div data-relationship-manager-target="relationshipsInput"></div>
   </div>
 
+  <div class="my-5">
+    <label class="block font-medium mb-2">Character Traits & Tropes</label>
+    <div data-controller="character-trait">
+      <div class="flex items-center space-x-4 mb-2">
+        <div class="flex-1">
+          <label class="block text-sm font-medium mb-1">Character:</label>
+          <select class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full" 
+                  id="character-trait-select" 
+                  data-character-trait-target="characterSelect">
+            <option value="">Select a character...</option>
+            <% prompt.characters.each do |character| %>
+              <option value="<%= character.id %>"><%= character.name %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label class="block text-sm font-medium mb-1">Trait:</label>
+          <%= select_tag "character_trait[trait_id]",
+                        options_from_collection_for_select(Trait.all, :id, :name),
+                        prompt: "Select a trait...",
+                        class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full",
+                        data: { character_trait_target: "traitSelect" } %>
+        </div>
+        <div class="flex items-end">
+          <button type="button" 
+                  class="bg-blue-600 text-white rounded px-4 py-2 font-medium" 
+                  id="add-character-trait-btn">
+            Add Character Trait
+          </button>
+        </div>
+      </div>
+      <div class="mt-3" data-character-trait-target="traitsList">
+        <%# This is where the added character traits will appear %>
+      </div>
+    </div>
+  </div>
+
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

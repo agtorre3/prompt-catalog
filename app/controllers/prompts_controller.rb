@@ -56,6 +56,6 @@ class PromptsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def prompt_params
-    params.require(:prompt).permit(:title, :description, character_ids: [], relationship_ids: [], tag_ids: [])
+    params.require(:prompt).permit(:title, :description, character_ids: [], relationship_ids: [], tag_ids: [], character_trait_ids: [])
   end
 end
