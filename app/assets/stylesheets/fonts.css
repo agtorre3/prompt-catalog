@@ -1,0 +1,113 @@
+/* Garamond Original Pro Font Declarations */
+
+@font-face {
+  font-family: 'Garamond Original Pro';
+  src: url('/fonts/Garamond-Original-Pro-Regular.woff2') format('woff2'),
+       url('/fonts/Garamond-Original-Pro-Regular.woff') format('woff'),
+       url('/fonts/Garamond-Original-Pro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Garamond Original Pro';
+  src: url('/fonts/Garamond-Original-Pro-Italic.woff2') format('woff2'),
+       url('/fonts/Garamond-Original-Pro-Italic.woff') format('woff'),
+       url('/fonts/Garamond-Original-Pro-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Garamond Original Pro';
+  src: url('/fonts/Garamond-Original-Pro-Bold.woff2') format('woff2'),
+       url('/fonts/Garamond-Original-Pro-Bold.woff') format('woff'),
+       url('/fonts/Garamond-Original-Pro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Garamond Original Pro';
+  src: url('/fonts/Garamond-Original-Pro-Bold-Italic.woff2') format('woff2'),
+       url('/fonts/Garamond-Original-Pro-Bold-Italic.woff') format('woff'),
+       url('/fonts/Garamond-Original-Pro-Bold-Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Utility classes for using Garamond Original Pro */
+.font-garamond {
+  font-family: 'Garamond Original Pro', serif;
+}
+
+.font-garamond-bold {
+  font-family: 'Garamond Original Pro', serif;
+  font-weight: 700;
+}
+
+.font-garamond-italic {
+  font-family: 'Garamond Original Pro', serif;
+  font-style: italic;
+}
+
+/* NCT Torin Font Declarations */
+
+@font-face {
+  font-family: 'NCT Torin';
+  src: url('/fonts/NCT-Torin-Regular.woff2') format('woff2'),
+       url('/fonts/NCT-Torin-Regular.woff') format('woff'),
+       url('/fonts/NCT-Torin-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NCT Torin';
+  src: url('/fonts/NCT-Torin-Italic.woff2') format('woff2'),
+       url('/fonts/NCT-Torin-Italic.woff') format('woff'),
+       url('/fonts/NCT-Torin-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NCT Torin';
+  src: url('/fonts/NCT-Torin-Bold.woff2') format('woff2'),
+       url('/fonts/NCT-Torin-Bold.woff') format('woff'),
+       url('/fonts/NCT-Torin-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NCT Torin';
+  src: url('/fonts/NCT-Torin-Bold-Italic.woff2') format('woff2'),
+       url('/fonts/NCT-Torin-Bold-Italic.woff') format('woff'),
+       url('/fonts/NCT-Torin-Bold-Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Utility classes for using NCT Torin */
+.font-torin {
+  font-family: 'NCT Torin', sans-serif;
+}
+
+.font-torin-bold {
+  font-family: 'NCT Torin', sans-serif;
+  font-weight: 700;
+}
+
+.font-torin-italic {
+  font-family: 'NCT Torin', sans-serif;
+  font-style: italic;
+}

@@ -66,7 +66,9 @@ puts "Seeding tags for fandom tropes..."
   "Voldemort Wins AU",
   "Muggle AU",
   "Raising Harry",
-  "WBWL"
+  "WBWL",
+  "Marauders Era",
+  "Lightning Era"
 ].each do |fandom_trope|
   Tag.find_or_create_by!(name: fandom_trope, tag_category: TagCategory.find_by(name: 'Fandom Tropes'))
 end
