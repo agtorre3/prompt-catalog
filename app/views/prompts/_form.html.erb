@@ -11,111 +11,155 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :title, class: "font-torin" %>
-    <%= form.text_field :title, class: "font-torin block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5 relative" data-controller="multi-select-tokenizer" 
-       data-multi-select-tokenizer-path-value="<%= characters_url %>"
-       data-multi-select-tokenizer-target-name-value="prompt[character_ids][]"
-       data-multi-select-tokenizer-initial-value='<%= prompt.characters.map { |c| { id: c.id, name: c.name } }.to_json %>'>
-    <%= form.label :character_ids, "Characters", class: "font-torin" %>
-    <div class="relative">
-      <input type="text"
-             name=""
-             class="font-torin block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-             placeholder="Search for characters..."
-             data-action="input->multi-select-tokenizer#search"/>
+  <!---- Title/Description ---->
+  <div class="border-t-1 border-l-1 border-r-1 border-gray-600 p-4">
+    <div class="w-full my-5">
+      <%= form.label :title, class: "font-garamond text-2xl" %>
+      <%= form.text_field :title, class: "font-gordita block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="w-full my-5">
+      <%= form.label :description, class: "font-garamond text-2xl" %>
+      <%= form.text_area :description, rows: 4, class: "font-gordita block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   </div>
 
-  <div class="my-5 relative" data-controller="multi-select-tokenizer" 
-       data-multi-select-tokenizer-path-value="<%= tags_url %>"
-       data-multi-select-tokenizer-target-name-value="prompt[tag_ids][]"
-       data-multi-select-tokenizer-initial-value='<%= prompt.tags.map { |t| { id: t.id, name: t.name } }.to_json %>'>
-    <%= form.label :tag_ids, "Tags", class: "font-torin" %>
-    <div class="relative">
-      <input type="text"
-             name=""
-             class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-             placeholder="Search for tags..."
-             data-action="input->multi-select-tokenizer#search"/>
-    </div>
-  </div>
+  <!-- Section 1: Tags and Relationships -->
+  <div class="flex flex-row border border-gray-600">
 
-  <div class="my-5">
-    <%= form.label :description, class: "font-torin" %>
-    <%= form.text_area :description, rows: 4, class: "font-torin block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5" data-controller="relationship-manager"
-       data-relationship-manager-characters-value='<%= Character.all.to_json(only: [:id, :name]) %>'
-       data-relationship-manager-initial-relationships-value='<%= prompt.relationships.map { |r| { id: r.id, type: r.relationship_type, character_ids: r.characters.pluck(:id) } }.to_json %>'>
-    <label class="block font-medium mb-2 font-torin">Create Relationships</label>
-    <div class="flex items-center mb-2">
-      <label class="mr-4"><input type="radio" name="relationship_type" value="friendly" data-relationship-manager-target="typeRadio"> Friendly (&amp;)</label>
-      <label><input type="radio" name="relationship_type" value="romantic" data-relationship-manager-target="typeRadio"> Romantic (/)</label>
-    </div>
-    <div class="mb-2">
-      <label class="block mb-1 font-torin">Select Characters:</label>
-      <div class="relative" data-controller="multi-select-tokenizer" 
-           data-multi-select-tokenizer-path-value="<%= characters_url %>" 
-           data-relationship-manager-target="characterTokenizer"
-           data-multi-select-tokenizer-target-name-value="relationship[relationship_members_attributes][INDEX][character_id]">
-        <input type="text"
-               class="font-torin block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-               placeholder="Search for characters..."
-               data-action="input->multi-select-tokenizer#search" />
-      </div>
-    </div>
-    <button type="button" class="bg-gray-200 rounded px-3 py-1 mb-2" data-action="relationship-manager#addRelationship">Add New Relationship</button>
-    <div class="mb-2">
-      <label class="block font-medium">Current Relationships:</label>
-      <ul data-relationship-manager-target="relationshipList" class="list-disc ml-5"></ul>
-    </div>
-    <div data-relationship-manager-target="relationshipsInput"></div>
-  </div>
-
-  <div class="my-5">
-    <label class="block font-medium mb-2 font-torin">Character Traits & Tropes</label>
-    <div data-controller="character-trait"
-         data-character-trait-initial-traits-value='<%= prompt.character_traits.map { |ct| { id: ct.id, name: ct.name } }.to_json %>'>
-      <div class="flex items-center space-x-4 mb-2">
-        <div class="flex-1">
-          <label class="block text-sm font-medium mb-1 font-torin">Character:</label>
-          <select class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full" 
-                  id="character-trait-select" 
-                  data-character-trait-target="characterSelect">
-            <option value="">Select a character...</option>
-            <% prompt.characters.each do |character| %>
-              <option value="<%= character.id %>"><%= character.name %></option>
-            <% end %>
-          </select>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium mb-1 font-torin">Trait:</label>
-          <%= select_tag "character_trait[trait_id]",
-                        options_from_collection_for_select(Trait.all, :id, :name),
-                        prompt: "Select a trait...",
-                        class: "font-torin block shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full",
-                        data: { character_trait_target: "traitSelect" } %>
-        </div>
-        <div class="flex items-end">
-          <button type="button" 
-                  class="bg-blue-600 text-white rounded px-4 py-2 font-medium font-torin" 
-                  id="add-character-trait-btn">
-            Add Character Trait
-          </button>
+    <!-- Tags -->
+    <div class="w-full border-r-1 border-gray-600 p-4">
+      <div class="my-5 relative" data-controller="multi-select-tokenizer"
+           data-multi-select-tokenizer-path-value="<%= tags_url %>"
+           data-multi-select-tokenizer-target-name-value="prompt[tag_ids][]"
+           data-multi-select-tokenizer-initial-value='<%= prompt.tags.map { |t| { id: t.id, name: t.name } }.to_json %>'>
+        <%= form.label :tag_ids, "Tags", class: "font-garamond text-2xl" %>
+        <div class="relative">
+          <input type="text"
+                 name=""
+                 class="font-gordita block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+                 placeholder="Search for tags..."
+                 data-action="input->multi-select-tokenizer#search"/>
         </div>
       </div>
-      <div class="mt-3" data-character-trait-target="traitsList">
-        <%# This is where the added character traits will appear %>
+    </div>
+
+    <!-- Relationships -->
+    <div class="w-full p-4">
+      <div class="my-5" data-controller="relationship-manager"
+           data-relationship-manager-characters-value='<%= Character.all.to_json(only: [:id, :name]) %>'
+           data-relationship-manager-initial-relationships-value='<%= prompt.relationships.map { |r| { id: r.id, type: r.relationship_type, character_ids: r.characters.pluck(:id) } }.to_json %>'>
+        <label class="font-garamond text-2xl">Create Relationships</label>
+        <div class="flex items-center mb-2">
+          <label class="mr-4 font-gordita text-lg">
+            <input type="radio" name="relationship_type" value="friendly" data-relationship-manager-target="typeRadio">
+            Friendly (&amp;)
+          </label>
+          <label class="font-gordita text-lg">
+            <input type="radio" name="relationship_type" value="romantic" data-relationship-manager-target="typeRadio">
+            Romantic (/)
+          </label>
+        </div>
+        <div class="mb-2">
+          <label class="block mb-1 font-gordita text-lg">Select Characters:</label>
+          <div class="relative" data-controller="multi-select-tokenizer"
+               data-multi-select-tokenizer-path-value="<%= characters_url %>"
+               data-relationship-manager-target="characterTokenizer"
+               data-multi-select-tokenizer-target-name-value="relationship[relationship_members_attributes][INDEX][character_id]">
+            <input type="text"
+                   class="font-gordita block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+                   placeholder="Search for characters..."
+                   data-action="input->multi-select-tokenizer#search"/>
+          </div>
+        </div>
+        <button type="button"
+                class="bg-gray-400 text-white rounded px-4 py-2 font-medium font-gordita cursor-pointer"
+                data-action="relationship-manager#addRelationship">
+          Add New Relationship
+        </button>
+        <div class="mb-2">
+          <label class="font-gordita">Current Relationships:</label>
+          <ul data-relationship-manager-target="relationshipList" class="list-disc ml-5"></ul>
+        </div>
+        <div data-relationship-manager-target="relationshipsInput"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Characters and Traits -->
+  <div class="flex flex-row border-l-1 border-r-1 border-b-1 border-gray-600">
+
+    <!-- Characters -->
+    <div class="w-full p-4 border-r-1 border-gray-600 p-4">
+      <div class="my-5 relative" data-controller="multi-select-tokenizer"
+           data-multi-select-tokenizer-path-value="<%= characters_url %>"
+           data-multi-select-tokenizer-target-name-value="prompt[character_ids][]"
+           data-multi-select-tokenizer-initial-value='<%= prompt.characters.map { |c| { id: c.id, name: c.name } }.to_json %>'>
+        <%= form.label :character_ids, "Characters", class: "font-garamond text-2xl" %>
+        <div class="relative">
+          <input type="text"
+                 name=""
+                 class="font-gordita block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+                 placeholder="Search for characters..."
+                 data-action="input->multi-select-tokenizer#search"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Character Traits -->
+    <div class="w-full p-4">
+      <div class="my-5">
+        <label class="block font-medium mb-2 font-garamond text-2xl">Character Traits & Tropes</label>
+        <div data-controller="character-trait"
+             data-character-trait-initial-traits-value='<%= prompt.character_traits.map { |ct| { id: ct.id, name: ct.name } }.to_json %>'>
+          <div class="flex items-center space-x-4 mb-2">
+            <div class="flex-1">
+              <label class="block text-sm font-medium mb-1 font-gordita">Character:</label>
+              <select class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full"
+                      id="character-trait-select"
+                      data-character-trait-target="characterSelect">
+                <option value="">Select a character...</option>
+                <% prompt.characters.each do |character| %>
+                  <option value="<%= character.id %>"><%= character.name %></option>
+                <% end %>
+              </select>
+            </div>
+            <div class="flex-1">
+              <label class="block text-sm font-medium mb-1 font-gordita">Trait:</label>
+              <%= select_tag "character_trait[trait_id]",
+                             options_from_collection_for_select(Trait.all, :id, :name),
+                             prompt: "Select a trait...",
+                             class: "font-gordita block shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full",
+                             data: { character_trait_target: "traitSelect" } %>
+            </div>
+
+          </div>
+          <div class="flex items-end">
+            <button type="button"
+                    class="bg-gray-400 text-white rounded px-4 py-2 font-medium font-gordita cursor-pointer"
+                    id="add-character-trait-btn">
+              Add Character Trait
+            </button>
+          </div>
+          <div class="mt-3" data-character-trait-target="traitsList">
+            <%# This is where the added character traits will appear %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Warnings and NSFW Tags -->
+  <div class="pb-6">
+    <div>
+
+    </div>
+
+    <div>
+
     </div>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium font-torin cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium font-gordita cursor-pointer" %>
   </div>
 <% end %>

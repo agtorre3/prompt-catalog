@@ -36,6 +36,34 @@ Place the following font files in this directory:
 - `NCT-Torin-Bold-Italic.woff` (Bold italic style, fallback)
 - `NCT-Torin-Bold-Italic.ttf` (Bold italic style, fallback)
 
+### Gordita
+Place the following font files in this directory:
+
+- `Gordita-Regular.woff2` (Regular weight)
+- `Gordita-Regular.woff` (Regular weight, fallback)
+- `Gordita-Regular.ttf` (Regular weight, fallback)
+- `Gordita-Italic.woff2` (Italic style)
+- `Gordita-Italic.woff` (Italic style, fallback)
+- `Gordita-Italic.ttf` (Italic style, fallback)
+- `Gordita-Medium.woff2` (Medium weight)
+- `Gordita-Medium.woff` (Medium weight, fallback)
+- `Gordita-Medium.ttf` (Medium weight, fallback)
+- `Gordita-Medium-Italic.woff2` (Medium italic style)
+- `Gordita-Medium-Italic.woff` (Medium italic style, fallback)
+- `Gordita-Medium-Italic.ttf` (Medium italic style, fallback)
+- `Gordita-Bold.woff2` (Bold weight)
+- `Gordita-Bold.woff` (Bold weight, fallback)
+- `Gordita-Bold.ttf` (Bold weight, fallback)
+- `Gordita-Bold-Italic.woff2` (Bold italic style)
+- `Gordita-Bold-Italic.woff` (Bold italic style, fallback)
+- `Gordita-Bold-Italic.ttf` (Bold italic style, fallback)
+- `Gordita-Black.woff2` (Black weight)
+- `Gordita-Black.woff` (Black weight, fallback)
+- `Gordita-Black.ttf` (Black weight, fallback)
+- `Gordita-Black-Italic.woff2` (Black italic style)
+- `Gordita-Black-Italic.woff` (Black italic style, fallback)
+- `Gordita-Black-Italic.ttf` (Black italic style, fallback)
+
 ## Font Sources
 
 You can obtain these font files from:
@@ -58,6 +86,13 @@ Once the font files are in place, you can use the font in your application with:
 .font-torin { /* Regular weight */ }
 .font-torin-bold { /* Bold weight */ }
 .font-torin-italic { /* Italic style */ }
+
+/* Gordita */
+.font-gordita { /* Regular weight */ }
+.font-gordita-medium { /* Medium weight */ }
+.font-gordita-bold { /* Bold weight */ }
+.font-gordita-black { /* Black weight */ }
+.font-gordita-italic { /* Italic style */ }
 ```
 
 ### Tailwind Classes
@@ -71,6 +106,13 @@ Once the font files are in place, you can use the font in your application with:
 <h3 class="font-torin text-2xl">Modern Header</h3>
 <p class="font-torin-bold">Bold text</p>
 <em class="font-torin-italic">Italic emphasis</em>
+
+<!-- Gordita -->
+<h4 class="font-gordita text-xl">Clean Header</h4>
+<p class="font-gordita-medium">Medium weight text</p>
+<p class="font-gordita-bold">Bold emphasis</p>
+<p class="font-gordita-black">Extra bold text</p>
+<em class="font-gordita-italic">Italic style</em>
 ```
 
 ### Direct CSS
@@ -85,5 +127,26 @@ Once the font files are in place, you can use the font in your application with:
 .modern-text {
   font-family: 'NCT Torin', sans-serif;
   font-weight: 400;
+}
+
+/* Gordita */
+.clean-text {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 400;
+}
+
+.medium-text {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 500;
+}
+
+.bold-text {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 700;
+}
+
+.black-text {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 900;
 }
 ```

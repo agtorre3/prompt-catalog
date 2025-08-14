@@ -111,3 +111,110 @@
   font-family: 'NCT Torin', sans-serif;
   font-style: italic;
 }
+
+/* Gordita Font Declarations */
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Regular.woff2') format('woff2'),
+       url('/fonts/Gordita-Regular.woff') format('woff'),
+       url('/fonts/Gordita-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Italic.woff2') format('woff2'),
+       url('/fonts/Gordita-Italic.woff') format('woff'),
+       url('/fonts/Gordita-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Medium.woff2') format('woff2'),
+       url('/fonts/Gordita-Medium.woff') format('woff'),
+       url('/fonts/Gordita-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Medium-Italic.woff2') format('woff2'),
+       url('/fonts/Gordita-Medium-Italic.woff') format('woff'),
+       url('/fonts/Gordita-Medium-Italic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Bold.woff2') format('woff2'),
+       url('/fonts/Gordita-Bold.woff') format('woff'),
+       url('/fonts/Gordita-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Bold-Italic.woff2') format('woff2'),
+       url('/fonts/Gordita-Bold-Italic.woff') format('woff'),
+       url('/fonts/Gordita-Bold-Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Black.woff2') format('woff2'),
+       url('/fonts/Gordita-Black.woff') format('woff'),
+       url('/fonts/Gordita-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gordita';
+  src: url('/fonts/Gordita-Black-Italic.woff2') format('woff2'),
+       url('/fonts/Gordita-Black-Italic.woff') format('woff'),
+       url('/fonts/Gordita-Black-Italic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Utility classes for using Gordita */
+.font-gordita {
+  font-family: 'Gordita', sans-serif;
+}
+
+.font-gordita-medium {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 500;
+}
+
+.font-gordita-bold {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 700;
+}
+
+.font-gordita-black {
+  font-family: 'Gordita', sans-serif;
+  font-weight: 900;
+}
+
+.font-gordita-italic {
+  font-family: 'Gordita', sans-serif;
+  font-style: italic;
+}
