@@ -1,0 +1,43 @@
+<div class="blog-card">
+  <div class="card-title">
+    <span><%= prompt.title %></span>
+    <i class="fa-solid fa-thumbtack"></i>
+  </div>
+
+  <div class="card-content mt-1 text-sm">
+    <div class="w-full flex-none ml-1 mb-1">
+      Characters: <%= prompt.characters.map(&:name).join(", ") %>
+    </div>
+
+    <div class="flex flex-col min-h-[20px] ml-1 mb-1">
+      <div class="flex flex-wrap">
+        Tags:
+        <% prompt.tags.each do |tag| %>
+          <div class="marker-variation px-1 flex items-center justify-center">
+            <mark class="highlight highlight-yellow"><%= tag.name %></mark>
+          </div>
+        <% end %>
+        <%= 'None' unless prompt.tags.any? %>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-6 h-[200px]">
+      <p class="overflow-auto ml-1 p-2">
+        <%= prompt.description %>
+      </p>
+    </div>
+
+    <div class="flex">
+      <div class="flex-auto flex space- x-4">
+        <button class="h-10 px-6 bg-black text-white" type="submit">
+          Claim
+        </button>
+      </div>
+      <button class="flex-none flex items-center justify-center w-9 h-9 text-slate-300" type="button" aria-label="Like">
+        <svg width="20" height="20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
