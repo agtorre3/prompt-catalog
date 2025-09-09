@@ -6,12 +6,16 @@
   <% content_for :title, "Prompts" %>
 
   <div class="flex justify-between items-center pb-6">
-    <h1 class="font-bold text-4xl">Prompts</h1>
+    <h1 class="eb-garamond text-4xl text-[#B89A6A]">Prompts</h1>
     <% if user_signed_in? %>
-      <%= link_to "New prompt", new_prompt_path, class: "rounded-lg py-3 px-5 bg-black text-white block font-medium" %>
+      <%= link_to new_prompt_path, class: "eb-garamond text-xl rounded-lg py-3 px-5 bg-[#121212] text-[#B89A6A] block font-medium" do %>
+        <i class="fa-solid fa-wand-sparkles"></i>
+        New Prompt
+      <% end %>
     <% else %>
       <div class="relative group">
-        <button disabled class="rounded-lg py-3 px-5 bg-gray-400 text-white block font-medium cursor-not-allowed">
+        <button disabled class="eb-garamond text-xl rounded-lg py-3 px-5 bg-[#121212] text-[#B89A6A] block cursor-not-allowed">
+          <i class="fa-solid fa-wand-sparkles"></i>
           New prompt
         </button>
         <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
@@ -21,7 +25,7 @@
     <% end %>
   </div>
 
-  <div id="courses" class="flex flex-col gap-5 pb-24">
+  <div id="prompts" class="flex flex-col gap-5 pb-24">
     <%= render partial: "prompts/list", locals: { collection: @prompts } %>
   </div>
 </div>
