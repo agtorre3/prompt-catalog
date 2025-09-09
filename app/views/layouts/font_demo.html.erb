@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Font Demo - PromptCatalog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <!-- Google Fonts - EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-[#262626]">
+    <nav class="bg-[#1A1A1A] text-white p-4 fixed w-full top-0 z-50">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold">
+          <%= link_to "Prompt Catalog", root_path, class: "text-[#B89A6A] hover:text-gray-300" %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= link_to "← Back to Prompts", root_path, class: "text-[#B89A6A] hover:text-gray-300" %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container mx-auto mt-28 p-8">
+      <div class="mb-8">
+        <h1 class="eb-garamond-bold text-4xl text-[#B89A6A] mb-4">Font Demo</h1>
+        <p class="eb-garamond text-lg text-gray-300">Preview all available fonts in your application</p>
+      </div>
+      
+      <%= render 'layouts/font_demo' %>
+    </main>
+  </body>
+</html>

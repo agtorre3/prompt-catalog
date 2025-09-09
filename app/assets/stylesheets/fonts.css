@@ -218,3 +218,77 @@
   font-family: 'Gordita', sans-serif;
   font-style: italic;
 }
+
+/* EB Garamond Font Declarations */
+/* Note: This font is loaded via Google Fonts in the application layout */
+
+/* Utility classes for using EB Garamond */
+.eb-garamond {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.eb-garamond-medium {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.eb-garamond-semibold {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.eb-garamond-bold {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.eb-garamond-extrabold {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.eb-garamond-italic {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.eb-garamond-medium-italic {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.eb-garamond-semibold-italic {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.eb-garamond-bold-italic {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.eb-garamond-extrabold-italic {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: italic;
+}

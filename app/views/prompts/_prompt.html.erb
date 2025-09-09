@@ -1,14 +1,50 @@
 <%= link_to prompt_path(prompt) do %>
-  <div id="<%= dom_id prompt %>" class="flex flex-col flex-1 font-mono w-[450px] shadow hover:shadow-lg">
-      <div class="flex flex-wrap items-baseline bg-black p-3">
-        <h1 class="w-full flex-none text-2xl font-semibold text-white">
-          <%= prompt.title %>
+  <div id='prompt2' class="flex flex-col flex-1 font-sans shadow hover:shadow-lg bg-[#1A1A1A] w-[300px]">
+    <form class="flex-auto p-6">
+      <div class="flex flex-wrap">
+        <h1 class="flex-auto text-lg font-semibold text-[#B89A6A]">
+          Prompt Title
         </h1>
+        <div class="text-lg font-semibold text-[#B89A6A]">
+          GENRE
+        </div>
+        <div class="w-full flex-none text-sm font-medium text-[#B89A6A] mt-2">
+          Characters: Harry Potter, Ron Weasley, Hermione Granger
+        </div>
       </div>
-      <div class="flex items-baseline p-4">
-        <p class="line-clamp-5 hover:line-clamp-none">
-          <%= prompt.description %>
-        </p>
+      <div class="flex flex-col mt-2 mb-3 pb-3 border-b border-[#B89A6A] w-[90%]">
+        <div class="flex flex-wrap text-xs">
+          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#632424] text-black font-bold">
+            Alternate Universe
+          </div>
+          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#243463] text-black font-bold">
+            Medieval
+          </div>
+          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#1D3D22] text-black font-bold">
+            Soulmate AU
+          </div>
+          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#B58826] text-black font-bold">
+            Coffee Shop AU
+          </div>
+        </div>
       </div>
+      <p class="text-sm text-[#B89A6A] mb-6 overflow-auto h-60">
+        Here is the prompt description.
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+        Id torquent habitant tellus magnis lectus molestie netus. Non iaculis faucibus sapien euismod ligula blandit ex. Primis faucibus felis platea condimentum varius potenti himenaeos integer. Et at aenean suscipit nam potenti faucibus at fringilla ultricies. Pulvinar varius suscipit inceptos orci blandit eget justo id quam. Dignissim orci leo ipsum maximus bibendum! Natoque iaculis aliquet morbi viverra consectetur porttitor malesuada. Hac donec lacus vulputate congue vivamus netus maecenas conubia leo. Vehicula aliquam aptent euismod risus felis sociosqu ridiculus euismod nibh.
+      </p>
+      <div class="flex space-x-4 text-sm font-medium">
+        <div class="flex-auto flex space-x-4 justify-between">
+          <button class="h-10 px-6 font-semibold rounded-md bg-black text-[#B89A6A]" type="submit">
+            Bookmark
+          </button>
+          <button class="h-10 px-6 font-semibold rounded-md border border-[#B89A6A] text-[#B89A6A]" type="button">
+            Claim
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 <% end %>
