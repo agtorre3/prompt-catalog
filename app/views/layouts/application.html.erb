@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PromptCatalog</title>
+    <title>Prompt Catalog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -20,19 +20,20 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-[#262626]">
+  <body class="bg-[#383838]">
+
     <nav class="bg-[#1A1A1A] text-white p-4 fixed w-full top-0 z-50">
-      <div class="container mx-auto flex justify-between items-center">
+      <div class="mx-6 flex justify-between items-center">
         <div class="text-xl">
-          <%= link_to "Prompt Catalog", root_path, class: "text-[#B89A6A] hover:text-gray-300 eb-garamond-semibold text-5xl" %>
+          <%= link_to "Prompt Catalog", root_path, class: "text-[#DEC195] hover:text-gray-300 eb-garamond-semibold text-5xl" %>
         </div>
         <div class="flex items-center space-x-4">
           <% if user_signed_in? %>
-            <span class="eb-garamond text-[#B89A6A] text-xl">Welcome, <%= current_user.email %></span>
-            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "eb-garamond text-xl text-[#B89A6A] bg-[#632424] hover:bg-[#7A2C2C] hover:cursor-pointer px-4 py-2 rounded" %>
+            <span class="eb-garamond text-[#DEC195] text-xl">Welcome, <%= current_user.email %></span>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "eb-garamond text-xl text-[#DEC195] bg-[#632424] hover:bg-[#7A2C2C] hover:cursor-pointer px-4 py-2 rounded" %>
           <% else %>
-            <%= link_to "Sign in", new_user_session_path, class: "text-[#B89A6A] hover:text-gray-300" %>
-            <%= link_to "Sign up", new_user_registration_path, class: "text-[#B89A6A] bg-[#241010] hover:bg-blue-600 px-4 py-2 rounded" %>
+            <%= link_to "Sign in", new_user_session_path, class: "text-[#DEC195] hover:text-gray-300" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "text-[#DEC195] bg-[#241010] hover:bg-blue-600 px-4 py-2 rounded" %>
           <% end %>
         </div>
       </div>
@@ -45,7 +46,7 @@
       <p class="alert bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"><%= alert %></p>
     <% end %>
 
-    <main class="container mx-auto mt-28 flex">
+    <main class="mt-28 mx-28 flex">
       <%= yield %>
     </main>
   </body>
