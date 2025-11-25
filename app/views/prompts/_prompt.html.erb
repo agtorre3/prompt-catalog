@@ -12,33 +12,35 @@
         </div>
       </div>
 
-      <div class="w-full eb-garamond text-md text-[#DEC195] h-16 overflow-auto">
-        Characters: <%= prompt.characters.blank? ? 'None Specified' : prompt.characters.pluck(:name).join(', ') %>
+<!--      <div class="w-full eb-garamond text-md text-[#DEC195] h-16 overflow-auto">-->
+<!--        Characters: <%#= prompt.characters.blank? ? 'None Specified' : prompt.characters.pluck(:name).join(', ') %>-->
+<!--      </div>-->
+
+      <div class="flex flex-col mt-2 mb-3 pb-3 h-24 overflow-auto">
+        <div class="flex flex-wrap text-xs">
+          <%# Tailwind safelist: bg-[#632424] bg-[#243463] bg-[#1D3D22] bg-[#B58826] border-[#632424] border-[#243463] border-[#1D3D22] border-[#B58826] %>
+          <% if prompt.characters.blank? %>
+            <span class="eb-garamond text-md text-[#DEC195]">Characters: None Specified</span>
+           <% else %>
+            <% tag_colors = ['#632424', '#243463', '#1D3D22', '#B58826'] %>
+            <% prompt.characters.each_with_index do |character, index| %>
+              <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#DEC195] eb-garamond-bold text-sm text-black">
+                <%= character.name %>
+              </div>
+              <% end %>
+          <% end %>
+        </div>
       </div>
 
       <div class="flex flex-col mt-2 mb-3 pb-3 border-b border-[#DEC195] h-24 overflow-auto">
         <div class="flex flex-wrap text-xs">
-          <% tag_colors = ['#632424', '#243463', '#1D3D22', '#B58826'] %>
+          <%# Tailwind safelist: bg-[#632424] bg-[#243463] bg-[#1D3D22] bg-[#B58826] border-[#632424] border-[#243463] border-[#1D3D22] border-[#B58826] %>
+          <% tag_colors = %w[#632424 #243463 #1D3D22 #B58826] %>
           <% prompt.tags.visible.each_with_index do |tag, index| %>
             <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[<%= tag_colors[index % 4] %>] eb-garamond-bold text-sm">
               <%= tag.name %>
             </div>
           <% end %>
-
-<!--          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#632424] text-black font-bold">-->
-<!--            Alternate Universe-->
-<!--          </div>-->
-<!--          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#243463] text-black font-bold">-->
-<!--            Medieval-->
-<!--          </div>-->
-<!--          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#1D3D22] text-black font-bold">-->
-<!--            Soulmate AU-->
-<!--          </div>-->
-<!--          <div class="m-1 p-2 h-6 rounded-lg flex items-center justify-center bg-[#B58826] text-black font-bold">-->
-<!--            Coffee Shop AU-->
-<!--          </div>-->
-
-
         </div>
       </div>
       <p class="text-sm text-[#DEC195] mb-6 overflow-auto h-60">
